@@ -1,0 +1,82 @@
+﻿@model Labb1.ViewModels.OrderViewModel
+
+@{
+    ViewData["Title"] = "OrderSuccess";
+}
+
+<h1>OrderSuccess</h1>
+
+<div class="row">
+    <div class="card bg-light col-sm-12 col-md-4">
+        <div class="card-body">
+            <h3 class="card-title">
+                Order ID:
+                @Html.DisplayFor(modelItem => modelItem.Order.ID)
+            </h3>
+            <div class="card-text">
+                <div>
+                    Order date:
+                    @Html.DisplayFor(modelItem => modelItem.Order.Date)
+                </div>
+                <div>
+                    @Html.DisplayFor(modelItem => modelItem.User.FirstName)
+                    @Html.DisplayFor(modelItem => modelItem.User.LastName)
+                </div>
+                <div>
+                    <div>@Html.DisplayFor(modelItem => modelItem.User.StreetAdress)</div>
+                    <div>@Html.DisplayFor(modelItem => modelItem.User.PostalCode)</div>
+                    <div>@Html.DisplayFor(modelItem => modelItem.User.City)</div>
+                </div>
+                <div>
+                    Phone number:
+                    @Html.DisplayFor(modelItem => modelItem.User.PhoneNumber)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-8">
+        <table class="table table-responsive-sm">
+            <thead>
+                <tr>
+                    <th>
+                        NAME
+                    </th>
+                    <th>
+                        PRICE
+                    </th>
+                    <th>
+                        AMOUNT
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Order.OrderRows)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.GetProduct(item).Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.GetProduct(item).Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+
+                        @Html.LabelFor(modelItem => modelItem.Order.TotalPrice)
+                        @Html.DisplayFor(modelItem => modelItem.Order.TotalPrice)
+
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
