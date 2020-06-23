@@ -71,7 +71,7 @@ namespace Labb1
 			app.UseStaticFiles();
 
 			app.UseRouting();
-
+			
 			app.UseCors();
 			
 
